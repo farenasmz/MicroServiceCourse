@@ -7,7 +7,6 @@ namespace TiendaServicio.Api.Libro.Persistencia
     {
         public ContextoLibreria()
         {
-
         }
 
         public ContextoLibreria(DbContextOptions<ContextoLibreria> options) : base(options)
