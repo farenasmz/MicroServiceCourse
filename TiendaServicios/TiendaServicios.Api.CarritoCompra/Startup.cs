@@ -1,16 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using System;
+using TiendaServicios.Api.CarritoCompra.Aplicacion;
 using TiendaServicios.Api.CarritoCompra.Persistencia;
+using TiendaServicios.Api.CarritoCompra.RemoteInterface;
+using TiendaServicios.Api.CarritoCompra.RemoteService;
 
 namespace TiendaServicios.Api.CarritoCompra
 {
@@ -27,13 +27,18 @@ namespace TiendaServicios.Api.CarritoCompra
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IlibroService, LibrosService>();
             services.AddDbContext<CarritoContexto>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("ConexionDatabase"));
             });
 
-            /*services.AddMediatR(typeof(Nuevo.Manejador).Assembly);
-            services.AddAutoMapper(typeof(Consulta.Manejador));
+            services.AddMediatR(typeof(Nuevo.Manejador).Assembly);
+            services.AddHttpClient("Libros", config =>
+            {
+                config.BaseAddress = new Uri(Configuration["Services:Libros"]);
+            });
+            services.AddAutoMapper(typeof(Nuevo.Manejador));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -47,7 +52,7 @@ namespace TiendaServicios.Api.CarritoCompra
                         Email = Configuration["Parameters:SwaggerContact"]
                     }
                 });
-            });*/
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,7 +64,11 @@ namespace TiendaServicios.Api.CarritoCompra
             }
 
             app.UseRouting();
-
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", Configuration["Parameters:SwaggerTitle"]);
+            });
+            app.UseSwagger();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

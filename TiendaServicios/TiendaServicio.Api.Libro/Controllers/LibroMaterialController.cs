@@ -19,7 +19,7 @@ namespace TiendaServicio.Api.Libro.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Unit>> Crear(Ejecuta data)
+        public async Task<ActionResult<Unit>> Crear(Nuevo.Ejecuta data)
         {
             return await Mediator.Send(data);
         }

@@ -8,51 +8,54 @@ using TiendaServicio.Api.Libro.Persistencia;
 
 namespace TiendaServicio.Api.Libro.Aplicacion
 {
-    public class Ejecuta : IRequest
+    public class Nuevo
     {
-        public string Titulo { get; set; }
-        public DateTime? FechaPublicacion { get; set; }
-        public Guid AutorLibro { get; set; }
-    }
-
-    public class EjecutaValidacion : AbstractValidator<Ejecuta>
-    {
-        public EjecutaValidacion()
+        public class Ejecuta : IRequest
         {
-            RuleFor(r => r.Titulo).NotEmpty();
-            RuleFor(r => r.FechaPublicacion).NotEmpty();
-            RuleFor(r => r.AutorLibro).NotEmpty();
-        }
-    }
-
-    public class Manejador : IRequestHandler<Ejecuta>
-    {
-        private readonly ContextoLibreria Context;
-
-        public Manejador(ContextoLibreria context)
-        {
-            Context = context;
+            public string Titulo { get; set; }
+            public DateTime? FechaPublicacion { get; set; }
+            public Guid AutorLibro { get; set; }
         }
 
-        public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
+        public class EjecutaValidacion : AbstractValidator<Ejecuta>
         {
-            int result;
-            LibreriaMaterial autorLibro = new LibreriaMaterial()
+            public EjecutaValidacion()
             {
-                Titulo = request.Titulo,
-                FechaPublicacion = request.FechaPublicacion,
-                AutorLibro = request.AutorLibro,
-            };
+                RuleFor(r => r.Titulo).NotEmpty();
+                RuleFor(r => r.FechaPublicacion).NotEmpty();
+                RuleFor(r => r.AutorLibro).NotEmpty();
+            }
+        }
 
-            await Context.AddAsync(autorLibro);
-            result = await Context.SaveChangesAsync();
+        public class Manejador : IRequestHandler<Ejecuta>
+        {
+            private readonly ContextoLibreria Context;
 
-            if (result > 0)
+            public Manejador(ContextoLibreria context)
             {
-                return Unit.Value;
+                Context = context;
             }
 
-            throw new Exception("Ha ocurrido un error");
+            public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
+            {
+                int result;
+                LibreriaMaterial autorLibro = new LibreriaMaterial()
+                {
+                    Titulo = request.Titulo,
+                    FechaPublicacion = request.FechaPublicacion,
+                    AutorLibro = request.AutorLibro,
+                };
+
+                await Context.AddAsync(autorLibro);
+                result = await Context.SaveChangesAsync();
+
+                if (result > 0)
+                {
+                    return Unit.Value;
+                }
+
+                throw new Exception("Ha ocurrido un error");
+            }
         }
     }
 }

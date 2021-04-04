@@ -29,8 +29,8 @@ namespace TiendaServicio.Api.Libro
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("ConexionDatabase"));
             });
-            services.AddControllers().AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<Ejecuta>());
-            services.AddMediatR(typeof(Manejador).Assembly);
+            services.AddControllers().AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<Nuevo.Ejecuta>());
+            services.AddMediatR(typeof(Nuevo.Manejador).Assembly);
             services.AddAutoMapper(typeof(Consulta.Ejecuta));
             services.AddSwaggerGen(c =>
             {
