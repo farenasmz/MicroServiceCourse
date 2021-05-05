@@ -1,2 +1,3 @@
 ﻿Add-Migration -StartupProject TiendaServicios.Api.Autor -Context "ContextoAutor" Initial
 Add-Migration -StartupProject TiendaServicio.Api.Libro -Context "ContextoLibreria" Initial
+update-database

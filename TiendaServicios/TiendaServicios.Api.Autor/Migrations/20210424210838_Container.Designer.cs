@@ -10,8 +10,8 @@ using TiendaServicios.Api.Autor.Persistencia;
 namespace TiendaServicios.Api.Autor.Migrations
 {
     [DbContext(typeof(ContextoAutor))]
-    [Migration("20210211192027_Initial")]
-    partial class Initial
+    [Migration("20210424210838_Container")]
+    partial class Container
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,9 +36,6 @@ namespace TiendaServicios.Api.Autor.Migrations
 
                     b.Property<DateTime?>("FechaNacimiento")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("GradoAcademicoGuid")
-                        .HasColumnType("text");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("text");

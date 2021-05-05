@@ -1,0 +1,21 @@
+ Crear container: docker run --name postgres-vaxi -e POSTGRES_PASSWORD=VaxiDrez$
+ Ingresar a Linux: docker exec -it postgres-vaxi bash   
+ Lista de usuarios postgres: \du
+ Conectar a base de datos: \c tiendalibroautor
+ Lista de base de datos: \l
+ Lista las tablas de postgres: \d
+ Entrar a usuario de postgres para ejecutar scripts: psql -U postgres 
+
+ *** Crear Network ***
+ Crear Network: docker network create microservicenet
+ Listar Networks: docker network list
+ Crear container dentro del network: docker network connect microservicenet postgres-vaxi
+ Obtener la información de la network creada: docker network inspect microservicenet
+
+
+ *****SQL SERVER*****
+ Crear Container: docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=VaxiDrez$" -p 1433:1433 -d mcr.microsoft.com/mssql/server
+
+
+ *** Añadir microservicio al container***
+ Right click => Add => Container Orchestator Support

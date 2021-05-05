@@ -35,9 +35,6 @@ namespace TiendaServicios.Api.Autor.Migrations
                     b.Property<DateTime?>("FechaNacimiento")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("GradoAcademicoGuid")
-                        .HasColumnType("text");
-
                     b.Property<string>("Nombre")
                         .HasColumnType("text");
 

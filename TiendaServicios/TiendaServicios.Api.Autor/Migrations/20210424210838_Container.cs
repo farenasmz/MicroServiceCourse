@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace TiendaServicios.Api.Autor.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Container : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,8 +17,7 @@ namespace TiendaServicios.Api.Autor.Migrations
                     Nombre = table.Column<string>(type: "text", nullable: true),
                     Apellido = table.Column<string>(type: "text", nullable: true),
                     FechaNacimiento = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    AutorLibroGuid = table.Column<string>(type: "text", nullable: true),
-                    GradoAcademicoGuid = table.Column<string>(type: "text", nullable: true)
+                    AutorLibroGuid = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
