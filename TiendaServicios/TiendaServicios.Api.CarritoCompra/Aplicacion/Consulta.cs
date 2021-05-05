@@ -56,9 +56,9 @@ namespace TiendaServicios.Api.CarritoCompra.Aplicacion
 
                 return new CarritoDto
                 {
-                    CarritoId = carritoSesion.CarritoSesionId,
+                    CarritoId = carritoSesion?.CarritoSesionId,
                     ListaProductos = listaCarritoDto,
-                    FechaCreacionSesion = carritoSesion.FechaCompra
+                    FechaCreacionSesion = carritoSesion?.FechaCompra
                 };
             }
         }
