@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TiendaServicio.Api.Libro.Aplicacion
+namespace TiendaServicios.Api.Gateway.LibroRemote
 {
-    public class LibroMaterialDto
+    public class LibroModeloRemote
     {
         public Guid? LibreriaMaterialId { get; set; }
         public string Titulo { get; set; }

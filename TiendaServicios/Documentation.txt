@@ -5,6 +5,7 @@
  Lista de base de datos: \l
  Lista las tablas de postgres: \d
  Entrar a usuario de postgres para ejecutar scripts: psql -U postgres 
+ Correr containers: docker start [NombreDelContainer]
 
  *** Crear Network ***
  Crear Network: docker network create microservicenet
