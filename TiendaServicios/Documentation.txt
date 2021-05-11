@@ -6,6 +6,8 @@
  Lista las tablas de postgres: \d
  Entrar a usuario de postgres para ejecutar scripts: psql -U postgres 
  Correr containers: docker start [NombreDelContainer]
+ Mostrar todos los containers: docker container list -a
+ Leantar los containers: docker start [NOMBRE-CONTAINER]
 
  *** Crear Network ***
  Crear Network: docker network create microservicenet
@@ -20,3 +22,15 @@
 
  *** Añadir microservicio al container***
  Right click => Add => Container Orchestator Support
+
+
+ *** RABBITMQ Y DOCKER ****
+ docker run -d --hostname mi-rabbit-server --name rabbit-vaxi rabbitmq
+
+ docker run -d --hostname mi-rabbit-server --name rabbit-vaxi-web -p 15672:15672 rabbitmq:3-management
+
+ http://localhost:15672/#/ user: guest, pwd: guest
+
+ AGREGAR RABBIT A LA NETWORK: docker network connect microservicenet rabbit-vaxi
+
+ AGREGAR RABBIT A LA NETWORK: docker network connect microservicenet rabbit-vaxi-web

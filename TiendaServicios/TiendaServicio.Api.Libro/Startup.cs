@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TiendaServicio.Api.Libro.Aplicacion;
 using TiendaServicio.Api.Libro.Persistencia;
+using TiendaServicios.RabbitMQ.Bus.BusRabbit;
+using TiendaServicios.RabbitMQ.Bus.Implement;
 
 namespace TiendaServicio.Api.Libro
 {
@@ -24,6 +26,11 @@ namespace TiendaServicio.Api.Libro
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /*services.AddSingleton<IRabbitEventBus, RabbitEventBus>(sp =>
+            {
+                IServiceScopeFactory scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+                return new RabbitEventBus(sp.GetService<IMediator>(), scopeFactory);
+            });*/
             services.AddControllers();
             services.AddDbContext<ContextoLibreria>(cfg =>
             {
